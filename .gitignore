@@ -42,3 +42,8 @@ next-env.d.ts
 
 # prisma generated client (reproducible via `npx prisma generate`)
 /src/generated/
+
+# local product images — use Cloudinary for production image storage
+/public/images/
+/images/
+
