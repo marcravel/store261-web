@@ -10,8 +10,8 @@ export const products: Product[] = [
     price: 120000,
     currency: 'MGA',
     images: [
-      { url: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800&auto=format&fit=crop&q=80', alt: 'Écouteurs Bluetooth Pro avec boîtier', isPrimary: true },
-      { url: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&auto=format&fit=crop&q=80', alt: 'Écouteurs Bluetooth Pro portés' }
+      { url: 'https://picsum.photos/seed/prod_bt_headphones/800/600', alt: 'Écouteurs Bluetooth Pro avec boîtier', isPrimary: true },
+      { url: 'https://picsum.photos/seed/prod_bt_headphones-2/800/600', alt: 'Écouteurs Bluetooth Pro portés' }
     ],
     categorySlug: 'electronics',
     tags: ['audio', 'bluetooth', 'wireless'],
@@ -29,8 +29,8 @@ export const products: Product[] = [
     price: 95000,
     currency: 'MGA',
     images: [
-      { url: 'https://images.unsplash.com/photo-1609592424085-f5da4d16d004?w=800&auto=format&fit=crop&q=80', alt: 'Power Bank 20000mAh', isPrimary: true },
-      { url: 'https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=800&auto=format&fit=crop&q=80', alt: 'Power Bank en utilisation' }
+      { url: 'https://picsum.photos/seed/prod_power_bank/800/600', alt: 'Power Bank 20000mAh', isPrimary: true },
+      { url: 'https://picsum.photos/seed/prod_power_bank-2/800/600', alt: 'Power Bank en utilisation' }
     ],
     categorySlug: 'electronics',
     tags: ['chargeur', 'accessoire', 'power'],
@@ -48,8 +48,8 @@ export const products: Product[] = [
     price: 25000,
     currency: 'MGA',
     images: [
-      { url: 'https://images.unsplash.com/photo-1541660837069-b1d52925595c?w=800&auto=format&fit=crop&q=80', alt: 'Câble USB-C rouge tressé', isPrimary: true },
-      { url: 'https://images.unsplash.com/photo-1619086303291-0ef7b4142db5?w=800&auto=format&fit=crop&q=80', alt: 'Détail connecteur du câble' }
+      { url: 'https://picsum.photos/seed/prod_usbc_cable/800/600', alt: 'Câble USB-C rouge tressé', isPrimary: true },
+      { url: 'https://picsum.photos/seed/prod_usbc_cable-2/800/600', alt: 'Détail connecteur du câble' }
     ],
     categorySlug: 'electronics',
     tags: ['cable', 'chargeur', 'accessoire'],
@@ -67,8 +67,8 @@ export const products: Product[] = [
     price: 150000,
     currency: 'MGA',
     images: [
-      { url: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&auto=format&fit=crop&q=80', alt: 'Sac à dos noir minimaliste', isPrimary: true },
-      { url: 'https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?w=800&auto=format&fit=crop&q=80', alt: 'Intérieur du sac à dos avec accessoires' }
+      { url: 'https://picsum.photos/seed/prod_backpack/800/600', alt: 'Sac à dos noir minimaliste', isPrimary: true },
+      { url: 'https://picsum.photos/seed/prod_backpack-2/800/600', alt: 'Intérieur du sac à dos avec accessoires' }
     ],
     categorySlug: 'fashion',
     tags: ['sac', 'bagagerie', 'style'],
@@ -86,8 +86,8 @@ export const products: Product[] = [
     price: 80000,
     currency: 'MGA',
     images: [
-      { url: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&auto=format&fit=crop&q=80', alt: 'Hoodie gris porté', isPrimary: true },
-      { url: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&auto=format&fit=crop&q=80', alt: 'Détail de la texture du coton' }
+      { url: 'https://picsum.photos/seed/prod_hoodie/800/600', alt: 'Hoodie gris porté', isPrimary: true },
+      { url: 'https://picsum.photos/seed/prod_hoodie-2/800/600', alt: 'Détail de la texture du coton' }
     ],
     categorySlug: 'fashion',
     tags: ['vetements', 'sweat', 'unisexe'],
@@ -105,8 +105,8 @@ export const products: Product[] = [
     price: 60000,
     currency: 'MGA',
     images: [
-      { url: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800&auto=format&fit=crop&q=80', alt: 'Lunettes de soleil vintage posées', isPrimary: true },
-      { url: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=800&auto=format&fit=crop&q=80', alt: 'Lunettes de soleil portées en plein air' }
+      { url: 'https://picsum.photos/seed/prod_sunglasses/800/600', alt: 'Lunettes de soleil vintage posées', isPrimary: true },
+      { url: 'https://picsum.photos/seed/prod_sunglasses-2/800/600', alt: 'Lunettes de soleil portées en plein air' }
     ],
     categorySlug: 'fashion',
     tags: ['accessoire', 'soleil', 'vintage'],
@@ -124,8 +124,8 @@ export const products: Product[] = [
     price: 45000,
     currency: 'MGA',
     images: [
-      { url: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&auto=format&fit=crop&q=80', alt: 'Gourde isotherme en acier inox', isPrimary: true },
-      { url: 'https://images.unsplash.com/photo-1523362628745-0c100150b504?w=800&auto=format&fit=crop&q=80', alt: 'Gourde isotherme en pleine nature' }
+      { url: 'https://picsum.photos/seed/prod_stainless_flask/800/600', alt: 'Gourde isotherme en acier inox', isPrimary: true },
+      { url: 'https://picsum.photos/seed/prod_stainless_flask-2/800/600', alt: 'Gourde isotherme en pleine nature' }
     ],
     categorySlug: 'home',
     tags: ['cuisine', 'bouteille', 'isotherme'],
@@ -143,8 +143,8 @@ export const products: Product[] = [
     price: 75000,
     currency: 'MGA',
     images: [
-      { url: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=800&auto=format&fit=crop&q=80', alt: 'Lampe de bureau LED moderne allumée', isPrimary: true },
-      { url: 'https://images.unsplash.com/photo-1534224039826-c7a0dea0e66a?w=800&auto=format&fit=crop&q=80', alt: 'Lampe éteinte vue détaillée tactile' }
+      { url: 'https://picsum.photos/seed/prod_led_lamp/800/600', alt: 'Lampe de bureau LED moderne allumée', isPrimary: true },
+      { url: 'https://picsum.photos/seed/prod_led_lamp-2/800/600', alt: 'Lampe éteinte vue détaillée tactile' }
     ],
     categorySlug: 'home',
     tags: ['luminaire', 'bureau', 'decoration'],
@@ -162,8 +162,8 @@ export const products: Product[] = [
     price: 55000,
     currency: 'MGA',
     images: [
-      { url: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800&auto=format&fit=crop&q=80', alt: 'Set de tasses en céramique', isPrimary: true },
-      { url: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=800&auto=format&fit=crop&q=80', alt: 'Tasse chaude tenue par quelqu\'un' }
+      { url: 'https://picsum.photos/seed/prod_mug_set/800/600', alt: 'Set de tasses en céramique', isPrimary: true },
+      { url: 'https://picsum.photos/seed/prod_mug_set-2/800/600', alt: 'Tasse chaude tenue par quelqu\'un' }
     ],
     categorySlug: 'home',
     tags: ['vaisselle', 'cuisine', 'tasses'],
@@ -181,8 +181,8 @@ export const products: Product[] = [
     price: 40000,
     currency: 'MGA',
     images: [
-      { url: 'https://images.unsplash.com/photo-1608248597481-496100c8c836?w=800&auto=format&fit=crop&q=80', alt: 'Pot de crème hydratante', isPrimary: true },
-      { url: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80', alt: 'Texture onctueuse de la crème' }
+      { url: 'https://picsum.photos/seed/prod_moisturizer/800/600', alt: 'Pot de crème hydratante', isPrimary: true },
+      { url: 'https://picsum.photos/seed/prod_moisturizer-2/800/600', alt: 'Texture onctueuse de la crème' }
     ],
     categorySlug: 'beauty',
     tags: ['skincare', 'bio', 'visage'],
@@ -200,8 +200,8 @@ export const products: Product[] = [
     price: 110000,
     currency: 'MGA',
     images: [
-      { url: 'https://images.unsplash.com/photo-1621607512214-68297480165e?w=800&auto=format&fit=crop&q=80', alt: 'Tondeuse à cheveux professionnelle', isPrimary: true },
-      { url: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&auto=format&fit=crop&q=80', alt: 'Accessoires de coiffure' }
+      { url: 'https://picsum.photos/seed/prod_hair_trimmer/800/600', alt: 'Tondeuse à cheveux professionnelle', isPrimary: true },
+      { url: 'https://picsum.photos/seed/prod_hair_trimmer-2/800/600', alt: 'Accessoires de coiffure' }
     ],
     categorySlug: 'beauty',
     tags: ['grooming', 'homme', 'appareil'],
@@ -219,8 +219,8 @@ export const products: Product[] = [
     price: 65000,
     currency: 'MGA',
     images: [
-      { url: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80', alt: 'Sérum visage flacon compte-gouttes', isPrimary: true },
-      { url: 'https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=800&auto=format&fit=crop&q=80', alt: 'Goutte de sérum sur le visage' }
+      { url: 'https://picsum.photos/seed/prod_face_serum/800/600', alt: 'Sérum visage flacon compte-gouttes', isPrimary: true },
+      { url: 'https://picsum.photos/seed/prod_face_serum-2/800/600', alt: 'Goutte de sérum sur le visage' }
     ],
     categorySlug: 'beauty',
     tags: ['skincare', 'visage', 'serum'],
@@ -238,8 +238,8 @@ export const products: Product[] = [
     price: 4800000,
     currency: 'MGA',
     images: [
-      { url: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&auto=format&fit=crop&q=80', alt: 'iPhone 15 Pro dos en titane', isPrimary: true },
-      { url: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=800&auto=format&fit=crop&q=80', alt: 'iPhone 15 Pro en main' }
+      { url: 'https://picsum.photos/seed/prod_iphone_15_pro/800/600', alt: 'iPhone 15 Pro dos en titane', isPrimary: true },
+      { url: 'https://picsum.photos/seed/prod_iphone_15_pro-2/800/600', alt: 'iPhone 15 Pro en main' }
     ],
     categorySlug: 'iphones',
     tags: ['apple', 'iphone', 'ios', 'smartphone'],
@@ -257,7 +257,7 @@ export const products: Product[] = [
     price: 3500000,
     currency: 'MGA',
     images: [
-      { url: 'https://images.unsplash.com/photo-1663499482523-1c0c1ebe4cc2?w=800&auto=format&fit=crop&q=80', alt: 'iPhone 14 violet', isPrimary: true }
+      { url: 'https://picsum.photos/seed/prod_iphone_14/800/600', alt: 'iPhone 14 violet', isPrimary: true }
     ],
     categorySlug: 'iphones',
     tags: ['apple', 'iphone', 'ios', 'smartphone'],
@@ -275,7 +275,7 @@ export const products: Product[] = [
     price: 5200000,
     currency: 'MGA',
     images: [
-      { url: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80', alt: 'Samsung Galaxy S24 Ultra noir', isPrimary: true }
+      { url: 'https://picsum.photos/seed/prod_galaxy_s24_ultra/800/600', alt: 'Samsung Galaxy S24 Ultra noir', isPrimary: true }
     ],
     categorySlug: 'android',
     tags: ['samsung', 'galaxy', 'android', 'smartphone'],
@@ -293,7 +293,7 @@ export const products: Product[] = [
     price: 1600000,
     currency: 'MGA',
     images: [
-      { url: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=80', alt: 'Xiaomi Redmi Note 13 Pro', isPrimary: true }
+      { url: 'https://picsum.photos/seed/prod_redmi_note_13_pro/800/600', alt: 'Xiaomi Redmi Note 13 Pro', isPrimary: true }
     ],
     categorySlug: 'android',
     tags: ['xiaomi', 'redmi', 'android', 'smartphone'],
