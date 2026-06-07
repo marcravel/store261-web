@@ -58,10 +58,14 @@ All branding values must be updatable from a **single location**: colors via CSS
 | Animation | **Framer Motion** | installed |
 | Images | **`next/image`** | always — never `<img>` |
 | Fonts | **`next/font/google`** | zero-layout-shift loading |
-| Data | **TypeScript static files** | `src/data/` |
-| Data access | **Repository pattern** | `src/lib/repository.ts` only |
+| Database | **PostgreSQL** | via Prisma ORM |
+| ORM | **Prisma** | `prisma` (dev) + `@prisma/client` (prod) |
+| Schema | **`prisma/schema.prisma`** | single source of relational truth |
+| Data access | **Repository pattern** | `src/lib/repository.ts` only — wraps `PrismaClient` |
 
 > **IMPORTANT:** Always read `node_modules/next/dist/docs/` before writing Next.js code. The installed version (16+) has API changes that differ from training data.
+
+> **DATABASE NOTE:** The data layer has been migrated from static TypeScript files in `src/data/` to a PostgreSQL database managed by Prisma ORM. The `src/data/` directory is now legacy and will be removed once the repository layer is wired to Prisma. All data access MUST go through `src/lib/repository.ts` which is the only file that instantiates `PrismaClient`.
 
 ---
 
@@ -126,10 +130,16 @@ store261-web/                   ← project root
 
 ### 5.1 Data Flow — Never Break This Chain
 ```
-src/data/*.ts          ← Static source of truth (never imported by UI directly)
+PostgreSQL Database
       │
       ▼
-src/lib/repository.ts  ← ONLY file that reads data/. All functions are async.
+prisma/schema.prisma   ← Relational source of truth (models, relations, enums)
+      │
+      ▼
+src/lib/prisma.ts      ← Singleton PrismaClient instance (one per process)
+      │
+      ▼
+src/lib/repository.ts  ← ONLY file that calls PrismaClient. All functions are async.
       │
       ▼
 Next.js Page (Server Component) ← Calls repository, passes typed props down
@@ -138,7 +148,7 @@ Next.js Page (Server Component) ← Calls repository, passes typed props down
 Client Components ('use client') ← Receive typed props, handle interactivity
 ```
 
-**Rule:** UI components NEVER import from `src/data/` directly. Always go through `repository.ts`.
+**Rule:** UI components NEVER import `PrismaClient` or `src/data/` directly. Always go through `repository.ts`.
 
 ### 5.2 Server vs Client Components
 - Default to **React Server Components** (no directive needed)
@@ -304,9 +314,18 @@ Do not add:
 - Payment gateway (Stripe, PayPal, etc.)
 - User authentication or accounts
 - Admin dashboard (planned for Phase 2 as a route group `/admin`)
-- A database — the data layer is static TypeScript files for this MVP
 - `moment.js` or other heavy date libraries (use `Intl` APIs)
 - `any` TypeScript type, ever
+
+## PART 11.1 — PRISMA / DATABASE GUARDRAILS
+
+- **Never instantiate `PrismaClient` outside `src/lib/prisma.ts`.** Use the singleton exported from that file everywhere.
+- **Never import `@prisma/client` types directly in UI components.** Map Prisma model types to the app's own TypeScript interfaces in `repository.ts` before passing props.
+- **Never run raw SQL** unless a typed Prisma query is genuinely impossible. Raw queries bypass type safety.
+- **Never commit `.env`** — the `DATABASE_URL` lives only in `.env.local` (gitignored). Use `.env.example` with a placeholder for documentation.
+- **Schema changes require a migration.** Run `npx prisma migrate dev --name <description>` — never edit the database directly.
+- **`prisma generate` must be run** after every `schema.prisma` change so `@prisma/client` types stay in sync.
+- **Seed script lives in `prisma/seed.ts`** and is invoked via `npx prisma db seed`. It should import the existing `src/data/` arrays as the initial data source.
 
 ---
 

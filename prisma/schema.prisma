@@ -1,0 +1,151 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Store261 — Prisma Schema
+// Database: PostgreSQL (Prisma ORM v7+)
+//
+// This file is the single relational source of truth.
+// After any change here, run:
+//   npx prisma migrate dev --name <description>
+//   npx prisma generate
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Generator — outputs the typed PrismaClient to src/generated/prisma so that
+// the client is co-located with the app source and tree-shaken correctly.
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+// Datasource — provider declared here; the actual DATABASE_URL is supplied at
+// runtime via prisma.config.ts → process.env.DATABASE_URL (never committed).
+datasource db {
+  provider = "postgresql"
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Enums
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// Mirrors the TypeScript `ProductStatus` union type.
+/// Stored as a native PostgreSQL ENUM for referential correctness.
+enum ProductStatus {
+  available
+  limited
+  out_of_stock
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Models
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// A product category (e.g. iPhones, Fashion, Beauty).
+/// One category has many products (1:N).
+model Category {
+  /// Stable string identifier — matches the `id` from the legacy TypeScript data.
+  /// Using String (not auto-increment Int) preserves legacy IDs like "cat_iphones".
+  id          String    @id @default(cuid())
+
+  /// URL-safe slug used for routing: /categories/[slug]
+  slug        String    @unique
+
+  name        String
+  description String
+
+  /// URL of the category hero image (picsum placeholder during development).
+  imageUrl    String
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // ── Relations ──────────────────────────────────────────────────────────────
+  /// Products that belong to this category.
+  products    Product[]
+
+  @@map("categories")
+}
+
+/// A sellable product in the Store261 catalog.
+/// Belongs to exactly one Category (N:1), has many ProductImages (1:N).
+model Product {
+  /// Stable string identifier — matches legacy `id` like "prod_iphone_15_pro".
+  id               String        @id @default(cuid())
+
+  /// URL-safe slug used for routing: /products/[slug]
+  slug             String        @unique
+
+  name             String
+
+  /// Short marketing copy used on product cards (≤ 120 chars).
+  shortDescription String        @db.VarChar(120)
+
+  /// Full Markdown-compatible product description.
+  description      String        @db.Text
+
+  /// Price in the smallest unit of the currency (e.g. Ariary for MGA).
+  price            Decimal       @db.Decimal(12, 2)
+
+  /// ISO 4217 currency code, e.g. "MGA", "EUR", "USD".
+  currency         String        @default("MGA") @db.VarChar(3)
+
+  /// Foreign key to Category.
+  categoryId       String
+
+  /// Denormalised slug kept for fast slug-based lookups without a join.
+  /// Must stay in sync with category.slug via repository logic.
+  categorySlug     String
+
+  /// Array of tags stored as a native PostgreSQL text array.
+  /// Enables full-text and array-contains queries without a join table.
+  tags             String[]
+
+  isFeatured       Boolean       @default(false)
+  isNew            Boolean       @default(false)
+
+  status           ProductStatus @default(available)
+
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  // ── Relations ──────────────────────────────────────────────────────────────
+  /// The category this product belongs to.
+  /// ON DELETE RESTRICT prevents orphaned products.
+  category         Category      @relation(fields: [categoryId], references: [id])
+
+  /// Ordered list of images for this product.
+  images           ProductImage[]
+
+  @@map("products")
+}
+
+/// An image associated with a product.
+/// A product has 1..N images; exactly one should have isPrimary = true.
+model ProductImage {
+  id        String   @id @default(cuid())
+
+  /// Absolute URL (picsum placeholder during development, CDN URL in production).
+  url       String
+
+  /// Descriptive alt text for accessibility and SEO.
+  alt       String
+
+  /// True for the image shown in product cards and OG tags.
+  /// Only one image per product should be primary — enforced by repository logic.
+  isPrimary Boolean  @default(false)
+
+  /// Display order (lower = earlier). Allows manual reordering without slug changes.
+  position  Int      @default(0)
+
+  /// Foreign key to Product.
+  productId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // ── Relations ──────────────────────────────────────────────────────────────
+  /// The product this image belongs to.
+  /// ON DELETE CASCADE removes images when their product is deleted.
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@index([productId, isPrimary])
+  @@map("product_images")
+}
