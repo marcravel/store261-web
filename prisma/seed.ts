@@ -10,10 +10,14 @@
  */
 
 import { PrismaClient } from '../src/generated/prisma/client';
+import { PrismaPg } from '@prisma/adapter-pg';
 import { categories } from '../src/data/categories';
 import { products } from '../src/data/products';
 
-const prisma = new PrismaClient();
+// Prisma 7 requires an explicit driver adapter — DATABASE_URL is no longer
+// read automatically from the environment by the new prisma-client generator.
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
+const prisma = new PrismaClient({ adapter });
 
 async function main(): Promise<void> {
   console.log('🌱  Starting Store261 database seed…');
