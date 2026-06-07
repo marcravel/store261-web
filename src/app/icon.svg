@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="100%" height="100%">
+  <!-- Rounded background with brand's primary dark color -->
+  <rect width="256" height="256" rx="64" fill="#1A1A2E" />
+  
+  <!-- Centered text "261" styled with brand's gold color -->
+  <text 
+    x="50%" 
+    y="52%" 
+    dominant-baseline="central" 
+    text-anchor="middle" 
+    font-family="system-ui, -apple-system, sans-serif" 
+    font-size="115" 
+    font-weight="900" 
+    fill="#E8B84B"
+  >261</text>
+</svg>
