@@ -9,7 +9,7 @@
  *   tsx prisma/seed.ts          ← direct run (requires DATABASE_URL in .env)
  */
 
-import { PrismaClient } from '../src/generated/prisma';
+import { PrismaClient } from '../src/generated/prisma/client';
 import { categories } from '../src/data/categories';
 import { products } from '../src/data/products';
 
