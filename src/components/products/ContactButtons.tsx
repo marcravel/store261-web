@@ -1,15 +1,16 @@
 'use client';
 
 import { generateWhatsAppLink, generateMessengerLink } from '@/lib/config';
+import type { Product } from '@/types';
 
 interface ContactButtonsProps {
-  productName: string;
+  product: Product;
   className?: string;
 }
 
-export default function ContactButtons({ productName, className = '' }: ContactButtonsProps) {
-  const whatsappUrl = generateWhatsAppLink(productName);
-  const messengerUrl = generateMessengerLink(productName);
+export default function ContactButtons({ product, className = '' }: ContactButtonsProps) {
+  const whatsappUrl = generateWhatsAppLink(product);
+  const messengerUrl = generateMessengerLink(product);
 
   return (
     <div className={`space-y-4 ${className}`}>

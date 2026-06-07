@@ -1,4 +1,4 @@
-import type { BusinessConfig } from '@/types';
+import type { BusinessConfig, Product } from '@/types';
 
 export const businessConfig: BusinessConfig = {
   name: 'Store 261',
@@ -14,16 +14,17 @@ export const businessConfig: BusinessConfig = {
 };
 
 // Contact message generators
-export function generateWhatsAppLink(productName: string): string {
+export function generateWhatsAppLink(product: Product): string {
   const message = encodeURIComponent(
-    `Hello! I am interested in this product: *${productName}*. Could you provide more information?`
+    `Bonjour, je souhaite commander le produit : ${product.name} (${product.price} ${product.currency}). Ce produit est-il toujours disponible ?`
   );
   return `https://wa.me/${businessConfig.phone}?text=${message}`;
 }
 
-export function generateMessengerLink(productName: string): string {
+export function generateMessengerLink(product: Product): string {
   const message = encodeURIComponent(
-    `Hello! I am interested in this product: ${productName}. Could you provide more information?`
+    `Bonjour, je souhaite commander le produit : ${product.name} (${product.price} ${product.currency}). Ce produit est-il toujours disponible ?`
   );
   return `https://m.me/${businessConfig.messengerUsername}?text=${message}`;
 }
+

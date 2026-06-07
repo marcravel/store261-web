@@ -183,7 +183,7 @@ export default async function ProductDetailPage({ params }: Props) {
 
           {/* Action CTAs Buttons */}
           <div className="pt-6">
-            <ContactButtons productName={product.name} />
+            <ContactButtons product={product} />
           </div>
 
         </div>
