@@ -47,3 +47,7 @@ next-env.d.ts
 /public/images/
 /images/
 
+# local Neon CLI configuration
+.neon
+
+
