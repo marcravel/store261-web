@@ -54,7 +54,7 @@ export default function ProductCard({
       </Link>
 
       {/* Product Information */}
-      <div className="p-2.5 xs:p-4 sm:p-5 flex flex-col flex-grow space-y-1 xs:space-y-2 sm:space-y-3">
+      <div className="p-2.5 xs:p-4 sm:p-5 flex flex-col flex-grow space-y-0.5 xs:space-y-1 sm:space-y-2">
         {showCategory && (
           <span className="text-[8px] xs:text-[10px] uppercase tracking-wider font-semibold text-neutral-400">
             {categoryLabel}
@@ -71,17 +71,11 @@ export default function ProductCard({
           {product.shortDescription}
         </p>
 
-        {/* Pricing & CTA Link */}
-        <div className="flex flex-col xs:flex-row xs:items-center xs:justify-between pt-1.5 xs:pt-3 border-t border-neutral-50 gap-1 mt-auto">
-          <span className="font-bold text-xs xs:text-sm sm:text-base md:text-lg text-brand-dark">
+        {/* Pricing */}
+        <div className="flex flex-row items-center justify-between pt-1 xs:pt-2 border-t border-neutral-50 gap-1 mt-auto">
+          <span className="font-bold text-lg xs:text-xl text-brand-gold">
             {formatPrice(product.price, product.currency)}
           </span>
-          <Link
-            href={`/products/${product.slug}`}
-            className="text-[9px] xs:text-xs font-semibold text-brand-gold hover:text-brand-gold/80 transition-colors inline-flex items-center gap-0.5"
-          >
-            Détails →
-          </Link>
         </div>
       </div>
     </div>

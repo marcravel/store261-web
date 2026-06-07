@@ -191,11 +191,12 @@ export async function searchProducts(query: string): Promise<Product[]> {
 // ── Category queries ─────────────────────────────────────────────────────────
 
 /**
- * Returns all categories with their live product counts.
+ * Returns all categories with their live product counts, ordered by the
+ * explicit `sortOrder` field so the DB controls display priority.
  */
 export async function getAllCategories(): Promise<Category[]> {
   const rows = await prisma.category.findMany({
-    orderBy: { name: 'asc' },
+    orderBy: { sortOrder: 'asc' },
     include: { _count: { select: { products: true } } },
   });
   return rows.map(mapCategory);

@@ -53,6 +53,10 @@ model Category {
   /// URL of the category hero image (picsum placeholder during development).
   imageUrl    String
 
+  /// Display order in the UI (lower = earlier). Managed in the seed and admin.
+  /// Allows deterministic ordering without relying on alphabetical name sort.
+  sortOrder   Int       @default(0)
+
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
