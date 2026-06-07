@@ -13,7 +13,6 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
-  const isHome = pathname === '/';
   const useTransparent =
     pathname === '/products' ||
     pathname === '/about' ||

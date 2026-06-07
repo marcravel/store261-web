@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { Search, RotateCcw, SlidersHorizontal } from 'lucide-react';
 import { Input } from '@/components/ui/input';
@@ -24,10 +24,10 @@ export default function ProductFilter({ categories }: ProductFilterProps) {
 
   const [searchTerm, setSearchTerm] = useState(currentSearch);
 
-  // Sync state with URL updates
-  useEffect(() => {
-    setSearchTerm(currentSearch);
-  }, [currentSearch]);
+  // Track the last value we pushed to the URL so the debounce effect can
+  // compare against it without needing to read currentSearch as a dependency,
+  // which would otherwise require a sync setState-in-effect.
+  const lastPushedSearch = useRef(currentSearch);
 
   // Push filter updates to URL
   const updateUrlParams = useCallback(
@@ -47,16 +47,18 @@ export default function ProductFilter({ categories }: ProductFilterProps) {
     [searchParams, pathname, router]
   );
 
-  // Debounced search input handler (300ms)
+  // Debounced search: only push to URL when the typed value differs from the
+  // last value we already committed. Using a ref avoids a setState-in-effect.
   useEffect(() => {
     const handler = setTimeout(() => {
-      if (searchTerm !== currentSearch) {
+      if (searchTerm !== lastPushedSearch.current) {
+        lastPushedSearch.current = searchTerm;
         updateUrlParams({ q: searchTerm });
       }
     }, 300);
 
     return () => clearTimeout(handler);
-  }, [searchTerm, currentSearch, updateUrlParams]);
+  }, [searchTerm, updateUrlParams]);
 
   const handleCategoryChange = (val: string | null) => {
     updateUrlParams({ category: val });
